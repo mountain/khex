@@ -2,28 +2,27 @@ import jester, asyncdispatch, htmlgen
 
 
 settings:
-  staticDir = "semantic"
+  staticDir = "public"
 
 
 routes:
   get "/":
     resp html(
       head(
-        script(type="text/javascript", src="https://unpkg.com/vue"),
+        link(rel="stylesheet", type="text/css", class="ui", href="/semantic/semantic.css"),
+        script(type="text/javascript", src="https://code.jquery.com/jquery-3.2.1.js"),
+        script(type="text/javascript", src="/semantic/semantic.js"),
       ),
       body(
         h1("Hello world"),
-        `div`(id="app", "{{ message }}"),
+        `div`(id="app", "haha"),
       ),
       script(type="text/javascript", src="/javascripts/app.js"),
     )
   get "/javascripts/app.js":
     resp """
-      var app = new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello Vue!'
-        }
+      $(function() {
+        $('#app').html('hello')
       })
     """
 
